@@ -4,8 +4,15 @@ node_modules/
 .nuxt/
 dist/
 build/
+.turbo/
+.vercel/
+.eslintcache
+
+# lockfile は「使うパッケージマネージャのもの」をコミット推奨
+# 例) npm を使うなら package-lock.json をコミットし、下2行は ignore のままでOK
 yarn.lock
 pnpm-lock.yaml
+# もし Yarn/pnpm を使うなら上記の行を削除してロックファイルをコミット
 
 # Environment variables
 .env*
@@ -24,15 +31,16 @@ venv/
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Django specific
+# DB/ログ
 *.log
 db.sqlite3
 db.sqlite3-journal
+*.sqlite3*
 media/
 staticfiles/
-
-# Docker
-.dockerignore
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # IDE / Editor
 .vscode/
@@ -41,7 +49,7 @@ staticfiles/
 *.swo
 *~
 
-# OS generated files
+# OS
 .DS_Store
 .DS_Store?
 ._*
@@ -50,7 +58,7 @@ staticfiles/
 ehthumbs.db
 Thumbs.db
 
-# Logs (except our progress logs)
+# Logs（except our progress logs）
 logs/*.log
 logs/*.txt
 !logs/dev_progress_*.md

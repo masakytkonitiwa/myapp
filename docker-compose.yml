@@ -1,0 +1,25 @@
+# docker-compose.yml （myapp/直下）
+services:
+  frontend:
+    build: ./frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    environment:
+      NEXT_TELEMETRY_DISABLED: "1"
+    # 生成後はこのコマンドでNextを起動（初回スキャフォールド時は run で上書きします）
+    command: sh -c "npm run dev -- -H 0.0.0.0"
+    env_file:
+      - ./frontend/.env.local
+
+  backend:
+    build: ./backend
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
